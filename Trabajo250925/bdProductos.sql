@@ -70,6 +70,9 @@ select distribuidor,sum(cantidad) as 'Productos distribuidos' from productos
 	/*6.*/
 		/*Consultas Santiago G*/
 		/*Consultas Santiago B*/
+--Dist. con el precio promedio mas alto
+select distribuidor, avg (precio) as 'Precio promedio distribuidores' 
+from Productos group by distribuidor order by 'Precio promedio distribuidores' desc;
 		/*Consultas Juan Pablo R*/
 select categoria, count(*) as total_productos, sum(cantidad) as cantidad_total, 
 avg(precio) as precio_promedio from productos
