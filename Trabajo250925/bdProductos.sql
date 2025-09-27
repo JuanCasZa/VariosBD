@@ -73,6 +73,10 @@ select distribuidor,sum(cantidad) as 'Productos distribuidos' from productos
 --Dist. con el precio promedio mas alto
 select distribuidor, avg (precio) as 'Precio promedio distribuidores' 
 from Productos group by distribuidor order by 'Precio promedio distribuidores' desc;
+
+-- el producto mas caro y barato por dist.
+select  distribuidor, max(precio) as 'este es el mas caro', min (precio) as 'este es el mas barato' from productos 
+group by distribuidor;
 		/*Consultas Juan Pablo R*/
 select categoria, count(*) as total_productos, sum(cantidad) as cantidad_total, 
 avg(precio) as precio_promedio from productos
