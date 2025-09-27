@@ -86,6 +86,6 @@ avg(precio) as precio_promedio, max(precio) as precio_maximo from productos
 where (categoria = 'L�cteos' or categoria = 'Panader�a' or categoria = 'Granos')
     and precio <= 3000 and cantidad between 20 and 100 and distribuidor <> 'Bimbo'
 group by categoria, distribuidor
-order by categoria, inventario_total desc;
+order by categoria, inventario desc;
 		/*Consultas Julian V*/
 		/*Consultas Juan Jos� C*/
