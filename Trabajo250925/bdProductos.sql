@@ -71,9 +71,19 @@ select distribuidor,sum(cantidad) as 'Productos distribuidos' from productos
 		/*Consultas Santiago G*/
 
 		/*Consultas Santiago B*/
+<<<<<<< HEAD
 		select distribuidor, avg (precio) as 'Precio promedio distribuidores' 
 		from Productos group by distribuidor order by 'Precio promedio distribuidores' desc;
 
+=======
+--Dist. con el precio promedio mas alto
+select distribuidor, avg (precio) as 'Precio promedio distribuidores' 
+from Productos group by distribuidor order by 'Precio promedio distribuidores' desc;
+
+-- el producto mas caro y barato por dist.
+select  distribuidor, max(precio) as 'este es el mas caro', min (precio) as 'este es el mas barato' from productos 
+group by distribuidor;
+>>>>>>> origin/main
 		/*Consultas Juan Pablo R*/
 		select categoria, count(*) as total_productos, sum(cantidad) as cantidad_total, 
 		avg(precio) as precio_promedio from productos
@@ -82,6 +92,7 @@ select distribuidor,sum(cantidad) as 'Productos distribuidos' from productos
 		order by categoria;
 
 
+<<<<<<< HEAD
 		select categoria, distribuidor, count(*) as total_productos, sum(cantidad) as inventario,
 		avg(precio) as precio_promedio, max(precio) as precio_maximo from productos
 		where (categoria = 'Lácteos' or categoria = 'Panadería' or categoria = 'Granos')
@@ -89,6 +100,14 @@ select distribuidor,sum(cantidad) as 'Productos distribuidos' from productos
 		group by categoria, distribuidor
 		order by categoria, inventario_total desc;
 
+=======
+select categoria, distribuidor, count(*) as total_productos, sum(cantidad) as inventario,
+avg(precio) as precio_promedio, max(precio) as precio_maximo from productos
+where (categoria = 'Lï¿½cteos' or categoria = 'Panaderï¿½a' or categoria = 'Granos')
+    and precio <= 3000 and cantidad between 20 and 100 and distribuidor <> 'Bimbo'
+group by categoria, distribuidor
+order by categoria, inventario desc;
+>>>>>>> origin/main
 		/*Consultas Julian V*/
 
 		/*Consultas Juan José C*/
