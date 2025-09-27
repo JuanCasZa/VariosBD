@@ -92,4 +92,13 @@ where (categoria = 'L�cteos' or categoria = 'Panader�a' or categoria = 'Gran
 group by categoria, distribuidor
 order by categoria, inventario desc;
 		/*Consultas Julian V*/
+select seccion, distribuidor, count(*) as 'Total # de Productos', min(cantidad) as 'Cantidad minima', 
+max(cantidad) as 'Cantidad maxima' from productos where distribuidor = 'Colanta' or distribuidor= 'Alpina' and cantidad>=35
+group by seccion, distribuidor
+order by seccion;
+
+select categoria, seccion, count(*) as '# Productos', sum(precio) as 'Total precio de los productos', 
+avg(precio) as 'Promedio precio de los productos' from productos where seccion= 'A1' or seccion= 'C1'
+group by seccion, categoria
+order by categoria;
 		/*Consultas Juan Jos� C*/
