@@ -73,3 +73,4 @@ select distribuidor,sum(cantidad) as 'Productos distribuidos' from productos
 		/*Consultas Juan Pablo R*/
 		/*Consultas Julian V*/
 		/*Consultas Juan José C*/
+		
