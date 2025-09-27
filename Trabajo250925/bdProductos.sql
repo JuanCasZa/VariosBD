@@ -17,16 +17,16 @@ create table Productos(
 
 insert into productos(nombre, cantidad, precio, categoria, seccion, distribuidor)
 values
-('Leche Alpina', 50, 3200.50, 'Lácteos', 'A1', 'Alpina'),
-('Queso Campesino', 20, 7800.00, 'Lácteos', 'A1', 'Colanta'),
-('Leche Colanta', 80, 3100.00, 'Lácteos', 'A1', 'Colanta'),
-('Yogurt Alpina', 45, 2500.00, 'Lácteos', 'A1', 'Alpina'),
-('Pan Bimbo', 60, 4500.00, 'Panadería', 'B1', 'Bimbo'),
-('Galletas Festival', 100, 2500.00, 'Panadería', 'B1', 'Nabisco'),
-('Jugo Hit', 200, 2500.00, 'Bebidas', 'C1', 'Postobón'),
-('Agua Cristal', 200, 1200.00, 'Bebidas', 'C1', 'Postobón'),
-('Gaseosa Colombiana', 150, 3200.00, 'Bebidas', 'C1', 'Postobón'),
-('Café Sello Rojo', 30, 12000.00, 'Café', 'D1', 'Nutresa'),
+('Leche Alpina', 50, 3200.50, 'LÃ¡cteos', 'A1', 'Alpina'),
+('Queso Campesino', 20, 7800.00, 'LÃ¡cteos', 'A1', 'Colanta'),
+('Leche Colanta', 80, 3100.00, 'LÃ¡cteos', 'A1', 'Colanta'),
+('Yogurt Alpina', 45, 2500.00, 'LÃ¡cteos', 'A1', 'Alpina'),
+('Pan Bimbo', 60, 4500.00, 'PanaderÃ­a', 'B1', 'Bimbo'),
+('Galletas Festival', 100, 2500.00, 'PanaderÃ­a', 'B1', 'Nabisco'),
+('Jugo Hit', 200, 2500.00, 'Bebidas', 'C1', 'PostobÃ³n'),
+('Agua Cristal', 200, 1200.00, 'Bebidas', 'C1', 'PostobÃ³n'),
+('Gaseosa Colombiana', 150, 3200.00, 'Bebidas', 'C1', 'PostobÃ³n'),
+('CafÃ© Sello Rojo', 30, 12000.00, 'CafÃ©', 'D1', 'Nutresa'),
 ('Aceite Premier', 40, 8500.00, 'Aceites', 'D2', 'Team Foods'),
 ('Sal Refisal', 70, 1200.00, 'Condimentos', 'D3', 'Refisal'),
 ('Arroz Diana', 90, 2800.00, 'Granos', 'E1', 'Diana'),
@@ -34,16 +34,16 @@ values
 ('Harina Haz de Oros', 80, 4300.00, 'Harinas', 'E2', 'Molinos Roa'),
 ('Chocolate Luker', 50, 5600.00, 'Chocolates', 'F1', 'CasaLuker'),
 ('Arequipe Alpina', 50, 5200.00, 'Dulces', 'F1', 'Alpina'),
-('Cereal Zucaritas', 35, 9800.00, 'Cereales', 'F2', 'Kellogg’s'),
-('Aceitunas La Española', 25, 8700.00, 'Enlatados', 'F3', 'La Española'),
+('Cereal Zucaritas', 35, 9800.00, 'Cereales', 'F2', 'Kelloggâ€™s'),
+('Aceitunas La EspaÃ±ola', 25, 8700.00, 'Enlatados', 'F3', 'La EspaÃ±ola'),
 ('Pasta Doria', 100, 3600.00, 'Pasta', 'F4', 'Doria');
 
 
 select * from productos;
 
 /*1.*/
-select count(*) as 'Lácteos' from productos
-	where categoria='Lácteos';
+select count(*) as 'LÃ¡cteos' from productos
+	where categoria='LÃ¡cteos';
 /*2.*/
 select distribuidor,count(*) as 'Productos' from productos
 	group by distribuidor;
@@ -70,6 +70,9 @@ select distribuidor,sum(cantidad) as 'Productos distribuidos' from productos
 	/*6.*/
 		/*Consultas Santiago G*/
 		/*Consultas Santiago B*/
+--Dist. con el precio promedio mas alto
+select distribuidor, avg (precio) as 'Precio promedio distribuidores' 
+from Productos group by distribuidor order by 'Precio promedio distribuidores' desc;
 		/*Consultas Juan Pablo R*/
 		/*Consultas Julian V*/
-		/*Consultas Juan José C*/
+		/*Consultas Juan JosÃ© C*/
