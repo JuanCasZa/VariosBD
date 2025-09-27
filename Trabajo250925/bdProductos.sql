@@ -61,7 +61,15 @@ select categoria,seccion,avg(precio) as 'Promedio' from productos
 select distribuidor,categoria,avg(cantidad) as 'Promedio distribuido' from productos
 	group by distribuidor,categoria;
 
+
 select nombre,distribuidor,(cantidad*precio) as 'Promedio Total inventario' from productos;
 
 select distribuidor,sum(cantidad) as 'Productos distribuidos' from productos
 	group by distribuidor;
+
+	/*6.*/
+		/*Consultas Santiago G*/
+		/*Consultas Santiago B*/
+		/*Consultas Juan Pablo R*/
+		/*Consultas Julian V*/
+		/*Consultas Juan José C*/
