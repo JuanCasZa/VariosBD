@@ -1,3 +1,9 @@
+create database VariosBD;
+
+go
+use VariosBD;
+go
+
 create table Productos(
 	id int identity,
 	nombre varchar(30)not null,
