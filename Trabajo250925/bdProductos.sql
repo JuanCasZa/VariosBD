@@ -4,7 +4,7 @@ go
 use VariosBD;
 go
 
-create table Productos(
+create table productos(
 	id int identity,
 	nombre varchar(30)not null,
 	cantidad int not null default 0,
@@ -26,7 +26,7 @@ values
 ('Jugo Hit', 200, 2500.00, 'Bebidas', 'C1', 'Postobón'),
 ('Agua Cristal', 200, 1200.00, 'Bebidas', 'C1', 'Postobón'),
 ('Gaseosa Colombiana', 150, 3200.00, 'Bebidas', 'C1', 'Postobón'),
-('Cafï¿½ Sello Rojo', 30, 12000.00, 'Café', 'D1', 'Nutresa'),
+('Café Sello Rojo', 30, 12000.00, 'Café', 'D1', 'Nutresa'),
 ('Aceite Premier', 40, 8500.00, 'Aceites', 'D2', 'Team Foods'),
 ('Sal Refisal', 70, 1200.00, 'Condimentos', 'D3', 'Refisal'),
 ('Arroz Diana', 90, 2800.00, 'Granos', 'E1', 'Diana'),
@@ -35,7 +35,7 @@ values
 ('Chocolate Luker', 50, 5600.00, 'Chocolates', 'F1', 'CasaLuker'),
 ('Arequipe Alpina', 50, 5200.00, 'Dulces', 'F1', 'Alpina'),
 ('Cereal Zucaritas', 35, 9800.00, 'Cereales', 'F2', 'Kelloggs'),
-('Aceitunas La Espaï¿½ola', 25, 8700.00, 'Enlatados', 'F3', 'La Española'),
+('Aceitunas La Española', 25, 8700.00, 'Enlatados', 'F3', 'La Española'),
 ('Pasta Doria', 100, 3600.00, 'Pasta', 'F4', 'Doria');
 
 
@@ -71,19 +71,12 @@ select distribuidor,sum(cantidad) as 'Productos distribuidos' from productos
 		/*Consultas Santiago G*/
 
 		/*Consultas Santiago B*/
-<<<<<<< HEAD
 		select distribuidor, avg (precio) as 'Precio promedio distribuidores' 
 		from Productos group by distribuidor order by 'Precio promedio distribuidores' desc;
 
-=======
---Dist. con el precio promedio mas alto
-select distribuidor, avg (precio) as 'Precio promedio distribuidores' 
-from Productos group by distribuidor order by 'Precio promedio distribuidores' desc;
+		select  distribuidor, max(precio) as 'este es el mas caro', min (precio) as 'este es el mas barato' from productos 
+		group by distribuidor;
 
--- el producto mas caro y barato por dist.
-select  distribuidor, max(precio) as 'este es el mas caro', min (precio) as 'este es el mas barato' from productos 
-group by distribuidor;
->>>>>>> origin/main
 		/*Consultas Juan Pablo R*/
 		select categoria, count(*) as total_productos, sum(cantidad) as cantidad_total, 
 		avg(precio) as precio_promedio from productos
@@ -91,24 +84,15 @@ group by distribuidor;
 		group by categoria
 		order by categoria;
 
-
-<<<<<<< HEAD
 		select categoria, distribuidor, count(*) as total_productos, sum(cantidad) as inventario,
 		avg(precio) as precio_promedio, max(precio) as precio_maximo from productos
 		where (categoria = 'Lácteos' or categoria = 'Panadería' or categoria = 'Granos')
 		and precio <= 3000 and cantidad between 20 and 100 and distribuidor <> 'Bimbo'
 		group by categoria, distribuidor
-		order by categoria, inventario_total desc;
+		order by categoria, inventario desc;
 
-=======
-select categoria, distribuidor, count(*) as total_productos, sum(cantidad) as inventario,
-avg(precio) as precio_promedio, max(precio) as precio_maximo from productos
-where (categoria = 'Lï¿½cteos' or categoria = 'Panaderï¿½a' or categoria = 'Granos')
-    and precio <= 3000 and cantidad between 20 and 100 and distribuidor <> 'Bimbo'
-group by categoria, distribuidor
-order by categoria, inventario desc;
->>>>>>> origin/main
 		/*Consultas Julian V*/
 
 		/*Consultas Juan José C*/
-		
+		select nombre, distribuidor, avg(cantidad*precio) as 'Precio promedio por cantidad', COUNT(categoria) as 'Cantidad de categorias por distribuidor' 
+		from productos where cantidad>35 group by nombre, distribuidor order by avg(cantidad*precio) desc;
