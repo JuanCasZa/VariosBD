@@ -107,5 +107,7 @@ select distribuidor,sum(cantidad) as 'Productos distribuidos' from productos
 		COUNT(categoria) as 'Cantidad de categorias por distribuidor' 
 		from productos where cantidad>35 group by nombre, distribuidor order by avg(cantidad*precio) desc;
 
-
+		select nombre, cantidad, seccion, SUM(cantidad) as 'Total del producto' from productos 
+		where (categoria like '%teos%' or categoria like '%pan%') or (distribuidor = 'Postobón')
+		group by nombre, cantidad, seccion order by seccion asc;
 
