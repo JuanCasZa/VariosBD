@@ -92,20 +92,20 @@ select distribuidor,sum(cantidad) as 'Productos distribuidos' from productos
 		order by categoria, inventario desc;
 
 		/*Consultas Julian V*/
-<<<<<<< HEAD
+		select seccion, distribuidor, count(*) as 'Total # de Productos', min(cantidad) as 'Cantidad minima', 
+		max(cantidad) as 'Cantidad maxima' from productos where distribuidor = 'Colanta' or distribuidor= 'Alpina' and cantidad>=35
+		group by seccion, distribuidor
+		order by seccion;
+
+		select categoria, seccion, count(*) as '# Productos', sum(precio) as 'Total precio de los productos', 
+		avg(precio) as 'Promedio precio de los productos' from productos where seccion= 'A1' or seccion= 'C1'
+		group by seccion, categoria
+		order by categoria;
 
 		/*Consultas Juan José C*/
-		select nombre, distribuidor, avg(cantidad*precio) as 'Precio promedio por cantidad', COUNT(categoria) as 'Cantidad de categorias por distribuidor' 
+		select nombre, distribuidor, avg(cantidad*precio) as 'Precio promedio por cantidad', 
+		COUNT(categoria) as 'Cantidad de categorias por distribuidor' 
 		from productos where cantidad>35 group by nombre, distribuidor order by avg(cantidad*precio) desc;
-=======
-select seccion, distribuidor, count(*) as 'Total # de Productos', min(cantidad) as 'Cantidad minima', 
-max(cantidad) as 'Cantidad maxima' from productos where distribuidor = 'Colanta' or distribuidor= 'Alpina' and cantidad>=35
-group by seccion, distribuidor
-order by seccion;
 
-select categoria, seccion, count(*) as '# Productos', sum(precio) as 'Total precio de los productos', 
-avg(precio) as 'Promedio precio de los productos' from productos where seccion= 'A1' or seccion= 'C1'
-group by seccion, categoria
-order by categoria;
-		/*Consultas Juan Josï¿½ C*/
->>>>>>> origin/main
+
+
