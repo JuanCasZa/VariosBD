@@ -17,16 +17,16 @@ create table productos(
 
 insert into productos(nombre, cantidad, precio, categoria, seccion, distribuidor)
 values
-('Leche Alpina', 50, 3200.50, 'Lácteos', 'A1', 'Alpina'),
-('Queso Campesino', 20, 7800.00, 'Lácteos', 'A1', 'Colanta'),
-('Leche Colanta', 80, 3100.00, 'Lácteos', 'A1', 'Colanta'),
-('Yogurt Alpina', 45, 2500.00, 'Lácteos', 'A1', 'Alpina'),
-('Pan Bimbo', 60, 4500.00, 'Panadería', 'B1', 'Bimbo'),
-('Galletas Festival', 100, 2500.00, 'Panadería', 'B1', 'Nabisco'),
-('Jugo Hit', 200, 2500.00, 'Bebidas', 'C1', 'Postobón'),
-('Agua Cristal', 200, 1200.00, 'Bebidas', 'C1', 'Postobón'),
-('Gaseosa Colombiana', 150, 3200.00, 'Bebidas', 'C1', 'Postobón'),
-('Café Sello Rojo', 30, 12000.00, 'Café', 'D1', 'Nutresa'),
+('Leche Alpina', 50, 3200.50, 'LÃ¡cteos', 'A1', 'Alpina'),
+('Queso Campesino', 20, 7800.00, 'LÃ¡cteos', 'A1', 'Colanta'),
+('Leche Colanta', 80, 3100.00, 'LÃ¡cteos', 'A1', 'Colanta'),
+('Yogurt Alpina', 45, 2500.00, 'LÃ¡cteos', 'A1', 'Alpina'),
+('Pan Bimbo', 60, 4500.00, 'PanaderÃ­a', 'B1', 'Bimbo'),
+('Galletas Festival', 100, 2500.00, 'PanaderÃ­a', 'B1', 'Nabisco'),
+('Jugo Hit', 200, 2500.00, 'Bebidas', 'C1', 'PostobÃ³n'),
+('Agua Cristal', 200, 1200.00, 'Bebidas', 'C1', 'PostobÃ³n'),
+('Gaseosa Colombiana', 150, 3200.00, 'Bebidas', 'C1', 'PostobÃ³n'),
+('CafÃ© Sello Rojo', 30, 12000.00, 'CafÃ©', 'D1', 'Nutresa'),
 ('Aceite Premier', 40, 8500.00, 'Aceites', 'D2', 'Team Foods'),
 ('Sal Refisal', 70, 1200.00, 'Condimentos', 'D3', 'Refisal'),
 ('Arroz Diana', 90, 2800.00, 'Granos', 'E1', 'Diana'),
@@ -35,15 +35,15 @@ values
 ('Chocolate Luker', 50, 5600.00, 'Chocolates', 'F1', 'CasaLuker'),
 ('Arequipe Alpina', 50, 5200.00, 'Dulces', 'F1', 'Alpina'),
 ('Cereal Zucaritas', 35, 9800.00, 'Cereales', 'F2', 'Kelloggs'),
-('Aceitunas La Española', 25, 8700.00, 'Enlatados', 'F3', 'La Española'),
+('Aceitunas La EspaÃ±ola', 25, 8700.00, 'Enlatados', 'F3', 'La EspaÃ±ola'),
 ('Pasta Doria', 100, 3600.00, 'Pasta', 'F4', 'Doria');
 
 
 select * from productos;
 
 /*1.*/
-select count(*) as 'Lácteos' from productos
-	where categoria='Lácteos';
+select count(*) as 'LÃ¡cteos' from productos
+	where categoria='LÃ¡cteos';
 /*2.*/
 select distribuidor,count(*) as 'Productos' from productos
 	group by distribuidor;
@@ -55,21 +55,43 @@ select seccion,min(precio)as 'Minimo',max(precio)as 'Maximo' from productos
 	group by seccion;
 
 /*5.*/
-select categoria,seccion,avg(precio) as 'Promedio' from productos
-	group by categoria,seccion;
+select categoria,
+		avg(precio) as 'Promedio precio' from productos
+	group by categoria;
 
-select distribuidor,categoria,avg(cantidad) as 'Promedio distribuido' from productos
-	group by distribuidor,categoria;
+select seccion,
+		avg(precio) as 'Promedio precio' from productos
+	group by seccion;
+	
+select distribuidor,
+		sum(cantidad) as 'Productos distribuidos',
+		avg(cantidad) as 'Promedio por cada producto',
+		count(*) as Productos from productos
+	group by distribuidor;
 
 
 
 
 	/*6.*/
 		/*Consultas Santiago G*/
-		select nombre,distribuidor,(cantidad*precio) as 'Promedio Total inventario' from productos;
 
-		select distribuidor,sum(cantidad) as 'Productos distribuidos' from productos
-		group by distribuidor;
+		/*Valor de cada seccion*/
+
+select seccion,
+		sum(cantidad) as Cantidad,
+		avg(precio) as 'Promedio precios',
+		sum(cantidad*precio) as 'Valor neto' from productos
+	group by seccion
+	order by seccion;
+
+/*Distribuidores con menores de 70 productos en tienda*/
+
+select distribuidor,
+		count(*) as 'ProductosPocos',
+		avg(cantidad) as 'Promedio Stock' from productos
+	where cantidad<70
+	group by distribuidor
+	order by 'Promedio Stock';
 
 		/*Consultas Santiago B*/
 		select distribuidor, avg (precio) as 'Precio promedio distribuidores' 
@@ -87,7 +109,7 @@ select distribuidor,categoria,avg(cantidad) as 'Promedio distribuido' from produ
 
 		select categoria, distribuidor, count(*) as total_productos, sum(cantidad) as inventario,
 		avg(precio) as precio_promedio, max(precio) as precio_maximo from productos
-		where (categoria = 'Lácteos' or categoria = 'Panadería' or categoria = 'Granos')
+		where (categoria = 'LÃ¡cteos' or categoria = 'PanaderÃ­a' or categoria = 'Granos')
 		and precio <= 3000 and cantidad between 20 and 100 and distribuidor <> 'Bimbo'
 		group by categoria, distribuidor
 		order by categoria, inventario desc;
@@ -103,12 +125,12 @@ select distribuidor,categoria,avg(cantidad) as 'Promedio distribuido' from produ
 		group by seccion, categoria
 		order by categoria;
 
-		/*Consultas Juan José C*/
+		/*Consultas Juan JosÃ© C*/
 		select nombre, distribuidor, avg(cantidad*precio) as 'Precio promedio por cantidad', 
 		COUNT(categoria) as 'Cantidad de categorias por distribuidor' 
 		from productos where cantidad>35 group by nombre, distribuidor order by avg(cantidad*precio) desc;
 
 		select nombre, cantidad, seccion, SUM(cantidad) as 'Total del producto' from productos 
-		where (categoria like '%teos%' or categoria like '%pan%') or (distribuidor = 'Postobón')
+		where (categoria like '%teos%' or categoria like '%pan%') or (distribuidor = 'PostobÃ³n')
 		group by nombre, cantidad, seccion order by seccion asc;
 
